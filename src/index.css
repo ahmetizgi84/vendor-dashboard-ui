@@ -1,0 +1,12 @@
+.auth-layout {
+  padding-block: 10rem;
+  max-width: 575px;
+  margin: auto;
+}
+
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
