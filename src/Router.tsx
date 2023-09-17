@@ -1,9 +1,7 @@
-import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Login, Dashboard, Register, ForgotPassword } from "./pages";
 import AuthLayout from "./layouts/AuthLayout";
-import "./index.css";
 
 const router = createBrowserRouter([
   {

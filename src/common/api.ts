@@ -42,24 +42,26 @@ export function handleHttpResponseError(error: any) {
 }
 
 // CREATE AXIOS
-const gozAPI = axios.create({
+const http = axios.create({
   baseURL: constants.ApiURL,
   headers: {
-    // "Content-Type": "application/json; charset=utf-8",
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json; charset=utf-8",
+    "X-Requested-With": "XMLHttpRequest",
     Accept: "application/json",
   },
-  timeout: 40000,
   withCredentials: true,
+  timeout: 40000,
 });
 
 // API REQUESTS
+export async function apiGetCsrfToken() {
+  return http.get(`/sanctum/csrf-cookie`);
+}
 
-// TEST REQUEST
 export async function apiLogin(request: LoginPayloadType) {
-  return gozAPI.post(`/login`, request);
+  return http.post(`/api/login`, request);
 }
 
 // Handlers Implemented
-gozAPI.interceptors.request.use(httpRequestInterceptor, handleHttpRequestError);
-gozAPI.interceptors.response.use(httpResponseInterceptor, handleHttpResponseError);
+http.interceptors.request.use(httpRequestInterceptor, handleHttpRequestError);
+http.interceptors.response.use(httpResponseInterceptor, handleHttpResponseError);
