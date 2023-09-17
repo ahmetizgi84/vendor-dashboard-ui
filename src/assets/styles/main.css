@@ -1524,7 +1524,8 @@ ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.left-nav li.ant-menu-it
   justify-content: space-between;
 }
 
-.ant-progress-project .ant-progress-outer {
+.ant-progress-project .ant-progress-outer,
+.login-form-forgot {
   float: right;
 }
 

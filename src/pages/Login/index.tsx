@@ -74,7 +74,7 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item>
-              <Form.Item name="remember" className="aligin-center" valuePropName="checked" noStyle>
+              <Form.Item name="remember" className="aligin-center" style={{ flex: 1 }} valuePropName="checked" noStyle>
                 <span>
                   <Switch defaultChecked onChange={onChange} />
                   Remember me
