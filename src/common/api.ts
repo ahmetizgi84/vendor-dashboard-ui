@@ -50,7 +50,7 @@ const http = axios.create({
     Accept: "application/json",
   },
   withCredentials: true,
-  timeout: 40000,
+  timeout: 4000,
 });
 
 // API REQUESTS

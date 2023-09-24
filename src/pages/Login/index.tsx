@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, Switch } from "antd";
 
 import { LoginPayloadType } from "../../common/types";
 import { apiLoginAsync } from "../../common/api-utils";
+import { _setAuthState, _setUsername } from "../../store/auth";
+import { setAuthState } from "../../store/auth/actions";
 
 function onChange(checked: any) {
   console.log(`switch to ${checked}`);
@@ -12,6 +14,8 @@ const { Title } = Typography;
 const { Content } = Layout;
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
@@ -28,13 +32,24 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: LoginPayloadType) => {
+  async function onFinish(values: LoginPayloadType) {
     console.log("Received values of form: ", values);
-    setLoading(true);
-    const data = await apiLoginAsync(values);
-    console.log("data: ", data);
-    setLoading(false);
-  };
+    try {
+      setLoading(true);
+      const data = await apiLoginAsync(values);
+      console.log("data: ", data);
+      setAuthState(true);
+    } catch (error) {
+      console.log("error: ", error);
+      return {
+        error: "Invalid login attempt",
+      };
+    } finally {
+      setLoading(false);
+    }
+
+    navigate("/");
+  }
 
   return (
     <Content className="signin">
