@@ -17,12 +17,10 @@
     "suppressImplicitAnyIndexErrors": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    // "baseUrl": "./"
-    // "baseUrl": "src"
-    "baseUrl": "./src"
-    // "paths": {
-    //   "@/*": ["./*"]
-    // }
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "exclude": ["node_modules", "build"],
   "include": ["src"]

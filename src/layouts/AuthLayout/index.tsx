@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Layout } from "antd";
 
-import { Footer, Header } from "../../components";
+import { Footer, Header } from "@/components";
 
 const AuthLayout = () => {
   return (

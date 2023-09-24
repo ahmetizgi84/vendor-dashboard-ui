@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, Switch } from "antd";
 
-import { LoginPayloadType } from "../../common/types";
-import { apiLoginAsync } from "../../common/api-utils";
-import { _setAuthState, _setUsername } from "../../store/auth";
-import { setAuthState } from "../../store/auth/actions";
+import { LoginPayloadType } from "@/common/types";
+import { apiLoginAsync } from "@/common/api-utils";
+import { setAuthState } from "@/store/auth/actions";
 
 function onChange(checked: any) {
   console.log(`switch to ${checked}`);

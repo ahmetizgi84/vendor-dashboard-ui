@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, Space } from "antd";
 
-import { LoginPayloadType } from "../../common/types";
+import { LoginPayloadType } from "@/common/types";
 
 const { Title } = Typography;
 const { Content } = Layout;
