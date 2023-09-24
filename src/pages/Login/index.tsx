@@ -1,53 +1,59 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, Switch } from "antd";
 
-import { LoginPayloadType } from "@/common/types";
-import { apiLoginAsync } from "@/common/api-utils";
-import { setAuthState } from "@/store/auth/actions";
+import { TLoginPayloadDTO } from "@/common/types";
+import { useAuth } from "@/store/auth/hooks";
+import { apiLoginAsync } from "@/store/auth/api";
+
+const { Title } = Typography;
+const { Content } = Layout;
 
 function onChange(checked: any) {
   console.log(`switch to ${checked}`);
 }
-const { Title } = Typography;
-const { Content } = Layout;
+
+// /**
+//  *
+//  * @todo
+//  * 1. http://localhost:5173/ CORS setup
+//  * 2. token cacheSet
+//  * 3. Private & Public routes will be seperated
+//  * 4. Error Boundary
+//  * 5. Admin uı prepared w/ antd ui kit
+//  */
 
 const Login = () => {
   const navigate = useNavigate();
+  const { isLoading } = useAuth();
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
 
-  // /**
-  //  *
-  //  * @todo
-  //  * 1. http://localhost:5173/ CORS setup
-  //  * 2. token cacheSet
-  //  * 3. Private & Public routes will be seperated
-  //  * 4. Error Boundary
-  //  * 5. Admin uı prepared w/ antd ui kit
-  //  */
-
-  const [loading, setLoading] = useState(false);
-
-  async function onFinish(values: LoginPayloadType) {
-    console.log("Received values of form: ", values);
+  async function onFinish(values: TLoginPayloadDTO) {
     try {
-      setLoading(true);
-      const data = await apiLoginAsync(values);
-      console.log("data: ", data);
-      setAuthState(true);
+      await apiLoginAsync(values);
     } catch (error) {
-      console.log("error: ", error);
-      return {
-        error: "Invalid login attempt",
-      };
-    } finally {
-      setLoading(false);
+      return;
     }
-
     navigate("/");
+
+    // console.log("Received values of form: ", values);
+    // try {
+    //   setLoading(true);
+    //   const data = await apiLoginAsync(values);
+    //   console.log("data: ", data);
+    //   setAuthState(true);
+    // } catch (error) {
+    //   console.log("error: ", error);
+    //   return {
+    //     error: "Invalid login attempt",
+    //   };
+    // } finally {
+    //   setLoading(false);
+    // }
+
+    // navigate("/");
   }
 
   return (
@@ -101,7 +107,13 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{ width: "100%" }} loading={loading} disabled={loading}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ width: "100%" }}
+                loading={isLoading}
+                disabled={isLoading}
+              >
                 LOGIN
               </Button>
             </Form.Item>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, Checkbox } from "antd";
 
-import { LoginPayloadType } from "@/common/types";
+import { TLoginPayload } from "@/common/types";
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -11,7 +11,7 @@ const Register = () => {
     console.log("Failed:", errorInfo);
   };
 
-  const onFinish = async (values: LoginPayloadType) => {
+  const onFinish = async (values: TLoginPayload) => {
     console.log("Received values of form: ", values);
   };
 

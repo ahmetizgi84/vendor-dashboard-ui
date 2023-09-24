@@ -5,14 +5,14 @@ import store from "@/store";
 import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
 
-const username = store.getState().auth.username;
+const { loginData } = store.getState().auth;
 
 const router = createBrowserRouter([
   {
     id: "root",
     path: "/",
     loader() {
-      return { user: username };
+      return { user: loginData?.user.name };
     },
     Component: AuthLayout,
     children: [
@@ -53,16 +53,16 @@ export default Router;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function loginLoader() {
-  const isAuthenticated = store.getState().auth.isAuthenticated;
-  if (isAuthenticated) {
+  const loginData = store.getState().auth.loginData;
+  if (loginData != null) {
     return redirect("/dashboard");
   }
   return null;
 }
 
 function protectedLoader() {
-  const isAuthenticated = store.getState().auth.isAuthenticated;
-  if (!isAuthenticated) {
+  const loginData = store.getState().auth.loginData;
+  if (loginData == null) {
     return redirect("/");
   }
   return null;

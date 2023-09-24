@@ -1,7 +1,8 @@
 import { cacheGet } from "./cacheManager";
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import constants from "./constants";
-import { LoginPayloadType } from "./types";
+import { TLoginPayloadDTO } from "./types";
+import { TResponseWrapper } from "@/types";
 
 // HANDLERS
 export function httpRequestInterceptor(config: InternalAxiosRequestConfig) {
@@ -54,12 +55,12 @@ const http = axios.create({
 });
 
 // API REQUESTS
-export async function apiGetCsrfToken() {
+export async function httpGetCsrfToken() {
   return http.get(`/sanctum/csrf-cookie`);
 }
 
-export async function apiLogin(request: LoginPayloadType) {
-  return http.post(`/api/login`, request);
+export async function httpLogin(request: TLoginPayloadDTO) {
+  return http.post<TResponseWrapper>(`/api/login`, request);
 }
 
 // Handlers Implemented
