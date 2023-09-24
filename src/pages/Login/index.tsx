@@ -37,23 +37,6 @@ const Login = () => {
       return;
     }
     navigate("/");
-
-    // console.log("Received values of form: ", values);
-    // try {
-    //   setLoading(true);
-    //   const data = await apiLoginAsync(values);
-    //   console.log("data: ", data);
-    //   setAuthState(true);
-    // } catch (error) {
-    //   console.log("error: ", error);
-    //   return {
-    //     error: "Invalid login attempt",
-    //   };
-    // } finally {
-    //   setLoading(false);
-    // }
-
-    // navigate("/");
   }
 
   return (

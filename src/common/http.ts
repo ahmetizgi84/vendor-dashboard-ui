@@ -6,8 +6,8 @@ import { TResponseWrapper } from "@/types";
 
 // HANDLERS
 export function httpRequestInterceptor(config: InternalAxiosRequestConfig) {
-  const tokenStr = cacheGet("TOKEN");
-  if (tokenStr && config.headers) config.headers["Authorization"] = "Bearer " + tokenStr;
+  const userData = cacheGet("AUTH_STATE");
+  if (userData && config.headers) config.headers["Authorization"] = "Bearer " + userData.token;
   //   if (config.headers) config.headers["Content-Type"] = "multipart/form-data";
 
   return config;

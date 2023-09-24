@@ -1,6 +1,7 @@
 import { httpGetCsrfToken, httpLogin } from "@/common/http";
 import { TLoginPayloadDTO } from "@/common/types";
 import { setAuthLoading, setLoginData } from "./actions";
+import { cacheDelete, cacheSet } from "@/common/cacheManager";
 
 export const apiGetCsrfToken = async (): Promise<string> => {
   try {
@@ -24,8 +25,8 @@ export const apiLoginAsync = async (values: TLoginPayloadDTO) => {
 
     const response = await httpLogin(request);
     const data = response.data;
-    console.log("data: ", data);
     setLoginData(data.data);
+    cacheSet("AUTH_STATE", data.data);
   } catch (error) {
     console.error("apiLoginAsync error: ", error);
     return {
@@ -34,4 +35,9 @@ export const apiLoginAsync = async (values: TLoginPayloadDTO) => {
   } finally {
     setAuthLoading(false);
   }
+};
+
+export const logOutUser = () => {
+  setLoginData(null);
+  cacheDelete("AUTH_STATE");
 };
