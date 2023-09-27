@@ -222,6 +222,7 @@ function SideNav({ color }: { color: string }) {
           </NavLink>
         </Menu.Item>
       </Menu>
+
       <div className="aside-footer">
         <div
           className="footer-box"
@@ -234,7 +235,8 @@ function SideNav({ color }: { color: string }) {
           </span>
           <h6>Need Help?</h6>
           <p>Please check our docs</p>
-          <Button type="primary" className="ant-btn-sm ant-btn-block">
+          {/* <Button type="primary" className="ant-btn-sm ant-btn-block"> */}
+          <Button type="primary" block>
             DOCUMENTATION
           </Button>
         </div>

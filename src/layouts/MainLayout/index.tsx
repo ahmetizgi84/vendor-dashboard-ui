@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Layout, Drawer, Affix } from "antd";
+import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import SideNav from "./SideNav";
 
 import Header from "./Header";
-// import Footer from "./Footer";
+import Footer from "./Footer";
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
@@ -40,7 +39,7 @@ function MainLayout() {
         <Content className="content-ant">
           <Outlet />
         </Content>
-        {/* <Footer /> */}
+        <Footer />
       </Layout>
     </Layout>
   );
