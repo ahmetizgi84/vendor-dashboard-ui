@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 
-import { Login, Dashboard, Register, ForgotPassword } from "@/pages";
+import { Login, Dashboard, Register, ForgotPassword, Tables } from "@/pages";
 import store from "@/store";
 import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
@@ -39,6 +39,17 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Dashboard,
+      },
+    ],
+  },
+  {
+    path: "/tables",
+    loader: protectedLoader,
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        Component: Tables,
       },
     ],
   },

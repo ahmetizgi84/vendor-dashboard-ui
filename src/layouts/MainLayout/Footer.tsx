@@ -21,7 +21,7 @@ function Footer() {
             <ul>
               <li className="nav-item">
                 <a href="#" className="nav-link text-muted" target="_blank">
-                  GozFood Tim
+                  GozFood Team
                 </a>
               </li>
               <li className="nav-item">

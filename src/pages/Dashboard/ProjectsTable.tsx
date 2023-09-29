@@ -9,7 +9,7 @@ const ProjectsTable = () => {
 
   const list = [
     {
-      img: "/logo-shopify.svg",
+      img: "images/logo-shopify.svg",
       Title: "Soft UI Shopify Version",
       bud: "$14,000",
       progress: <Progress percent={60} size="small" />,
@@ -31,7 +31,7 @@ const ProjectsTable = () => {
       ),
     },
     {
-      img: "/logo-atlassian.svg",
+      img: "images/logo-atlassian.svg",
       Title: "Progress Track",
       bud: "$3,000",
       progress: <Progress percent={10} size="small" />,
@@ -47,7 +47,7 @@ const ProjectsTable = () => {
       ),
     },
     {
-      img: "/logo-slack.svg",
+      img: "images/logo-slack.svg",
       Title: "Fix Platform Errors",
       bud: "Not Set",
       progress: <Progress percent={100} size="small" status="active" />,
@@ -66,7 +66,7 @@ const ProjectsTable = () => {
       ),
     },
     {
-      img: "/logo-spotify.svg",
+      img: "images/logo-spotify.svg",
       Title: "Launch new Mobile App",
       bud: "$20,600",
       progress: <Progress percent={100} size="small" status="active" />,
@@ -82,7 +82,7 @@ const ProjectsTable = () => {
       ),
     },
     {
-      img: "/logo-jira.svg",
+      img: "images/logo-jira.svg",
       Title: "Add the New Landing Page",
       bud: "$4,000",
       progress: <Progress percent={80} size="small" />,
@@ -105,7 +105,7 @@ const ProjectsTable = () => {
     },
 
     {
-      img: "/logo-invision.svg",
+      img: "images/logo-invision.svg",
       Title: "Redesign Online Store",
       bud: "$2,000",
       progress: <Progress percent={100} size="small" status="exception" format={() => "Cancel"} />,
