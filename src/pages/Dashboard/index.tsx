@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { Card, Col, Row, Typography } from "antd";
 
-import { Card, Col, Row, Typography, Tooltip, Progress, Upload, message, Button, Timeline, Radio } from "antd";
-import { ToTopOutlined, MenuUnfoldOutlined, RightOutlined } from "@ant-design/icons";
-import Paragraph from "antd/lib/typography/Paragraph";
 import EChart from "@/components/chart/EChart";
 import LineChart from "@/components/chart/LineChart";
 
+import OrderHistory from "./OrderHistory";
+import ProjectsTable from "./ProjectsTable";
+
 const Dashboard = () => {
-  const { Title, Text } = Typography;
+  const { Title } = Typography;
 
   const dollor = [
     <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" key={0}>
@@ -96,46 +96,54 @@ const Dashboard = () => {
   ];
 
   return (
-    <>
-      <div className="layout-content">
-        {/* 4 Cards */}
-        <Row className="rowgap-vbox" gutter={[24, 0]}>
-          {count.map((c, index) => (
-            <Col key={index} xs={24} sm={24} md={12} lg={6} xl={6} className="mb-24">
-              <Card bordered={false} className="criclebox ">
-                <div className="number">
-                  <Row align="middle" gutter={[24, 0]}>
-                    <Col xs={18}>
-                      <span>{c.today}</span>
-                      <Title level={3}>
-                        {c.title} <small className={c.bnb}>{c.persent}</small>
-                      </Title>
-                    </Col>
-                    <Col xs={6}>
-                      <div className="icon-box">{c.icon}</div>
-                    </Col>
-                  </Row>
-                </div>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+    <div className="layout-content">
+      {/* 4 Cards */}
+      <Row className="rowgap-vbox" gutter={[24, 0]}>
+        {count.map((c, index) => (
+          <Col key={index} xs={24} sm={24} md={12} lg={6} xl={6} className="mb-24">
+            <Card bordered={false} className="criclebox">
+              <div className="number">
+                <Row align="middle" gutter={[24, 0]}>
+                  <Col xs={18}>
+                    <span>{c.today}</span>
+                    <Title level={3}>
+                      {c.title} <small className={c.bnb}>{c.persent}</small>
+                    </Title>
+                  </Col>
+                  <Col xs={6}>
+                    <div className="icon-box">{c.icon}</div>
+                  </Col>
+                </Row>
+              </div>
+            </Card>
+          </Col>
+        ))}
+      </Row>
 
-        {/* Charts */}
-        <Row gutter={[24, 0]}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <EChart />
-            </Card>
-          </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <LineChart />
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    </>
+      {/* Charts */}
+      <Row gutter={[24, 0]}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
+          <Card bordered={false} className="criclebox h-full">
+            <EChart />
+          </Card>
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
+          <Card bordered={false} className="criclebox h-full">
+            <LineChart />
+          </Card>
+        </Col>
+      </Row>
+
+      {/* TABLES */}
+      <Row gutter={[24, 0]}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={16} className="mb-24">
+          <ProjectsTable />
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={12} xl={8} className="mb-24">
+          <OrderHistory />
+        </Col>
+      </Row>
+    </div>
   );
 };
 
