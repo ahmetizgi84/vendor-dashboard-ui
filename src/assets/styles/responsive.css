@@ -31,7 +31,8 @@
     display: inline;
   }
   .profile-nav-bg {
-    margin-top: -87.8px;
+    /* margin-top: -87.8px; */
+    margin-top: 0px;
   }
   .card-profile-head {
     margin: -53px 24px 24px;

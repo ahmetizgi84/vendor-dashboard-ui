@@ -105,14 +105,24 @@ function Header({ name, subName }: THeader) {
       {/* <div className="setting-drwer">{setting}</div> */}
       <Row gutter={[24, 0]}>
         <Col span={24} md={6}>
-          <Breadcrumb>
+          <Breadcrumb
+            items={[
+              {
+                title: <NavLink to="/">Home</NavLink>,
+              },
+              {
+                title: <span style={{ textTransform: "capitalize" }}>{name.replace("/", "")}</span>,
+              },
+            ]}
+          />
+          {/* <Breadcrumb>
             <Breadcrumb.Item>
               <NavLink to="/">Pages</NavLink>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <span style={{ textTransform: "capitalize" }}>{name.replace("/", "")}</span>
             </Breadcrumb.Item>
-          </Breadcrumb>
+          </Breadcrumb> */}
           <div className="ant-page-header-heading">
             <span className="ant-page-header-heading-title" style={{ textTransform: "capitalize" }}>
               {subName.replace("/", "")}

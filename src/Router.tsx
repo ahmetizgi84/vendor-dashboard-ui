@@ -1,11 +1,19 @@
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 
-import { Login, Dashboard, Register, ForgotPassword, Tables } from "@/pages";
 import store from "@/store";
 import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
+import { Suspense, lazy } from "react";
 
 const { loginData } = store.getState().auth;
+
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Billing = lazy(() => import("./pages/Billing"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Tables = lazy(() => import("./pages/Tables"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 
 const router = createBrowserRouter([
   {
@@ -53,10 +61,36 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/billing",
+    loader: protectedLoader,
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        Component: Billing,
+      },
+    ],
+  },
+  {
+    path: "/profile",
+    loader: protectedLoader,
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        Component: Profile,
+      },
+    ],
+  },
 ]);
 
 const Router = () => {
-  return <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />;
+  return (
+    <Suspense fallback={<Gatherer />}>
+      <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+    </Suspense>
+  );
 };
 
 export default Router;
@@ -77,4 +111,19 @@ function protectedLoader() {
     return redirect("/");
   }
   return null;
+}
+
+function Gatherer() {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <p>Gathering components</p>
+    </div>
+  );
 }
