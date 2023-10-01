@@ -1,7 +1,7 @@
 import { cacheGet } from "./cacheManager";
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import constants from "./constants";
-import { TLoginPayloadDTO } from "./types";
+import { TLoginPayloadDTO, TRegisterPayloadDTO } from "./types";
 import { TResponseWrapper } from "@/types";
 
 // HANDLERS
@@ -61,6 +61,10 @@ export async function httpGetCsrfToken() {
 
 export async function httpLogin(request: TLoginPayloadDTO) {
   return http.post<TResponseWrapper>(`/api/login`, request);
+}
+
+export async function httpRegister(request: TRegisterPayloadDTO) {
+  return http.post<TResponseWrapper>(`/api/register`, request);
 }
 
 // Handlers Implemented

@@ -1,18 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, Checkbox } from "antd";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { TLoginPayload } from "@/common/types";
+import { TRegisterSchema, registerSchema } from "@/common/formValidations";
+import { apiRegisterAsync } from "@/store/auth/api";
 
 const { Title } = Typography;
 const { Content } = Layout;
 
 const Register = () => {
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+  const navigate = useNavigate();
 
-  const onFinish = async (values: TLoginPayload) => {
-    console.log("Received values of form: ", values);
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting, errors },
+    reset,
+  } = useForm<TRegisterSchema>({
+    defaultValues: { name: "", surname: "", email: "", password: "", password_confirmation: "", terms: true },
+    resolver: zodResolver(registerSchema),
+  });
+
+  const onSubmit = async (data: TRegisterSchema) => {
+    try {
+      const response = await apiRegisterAsync(data);
+      if (!response.error) {
+        navigate("/");
+        reset();
+      }
+    } catch (error) {
+      return;
+    }
   };
 
   return (
@@ -23,63 +42,106 @@ const Register = () => {
           <Title className="font-regular text-muted" level={5}>
             Create a new account to sign in
           </Title>
-          <Form onFinish={onFinish} onFinishFailed={onFinishFailed} layout="vertical" className="row-col">
+          <Form onFinish={handleSubmit(onSubmit)} layout="vertical" className="row-col" autoComplete="off">
+            {/* <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+
             <Form.Item
               className="name"
               label="Name"
-              name="name"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your fullname!",
-                },
-              ]}
+              help={errors.name ? errors.name.message : ""}
+              validateStatus={errors.name ? "error" : "success"}
             >
-              <Input placeholder="Name" />
+              <Controller
+                name="name"
+                render={({ field }) => <Input {...field} placeholder="Name" type="text" />}
+                control={control}
+              />
             </Form.Item>
 
             <Form.Item
-              className="username"
+              className="surname"
+              label="Surname"
+              help={errors.surname ? errors.surname.message : ""}
+              validateStatus={errors.surname ? "error" : "success"}
+            >
+              <Controller
+                name="surname"
+                render={({ field }) => <Input {...field} placeholder="Surname" type="text" />}
+                control={control}
+              />
+            </Form.Item>
+
+            <Form.Item
+              className="email"
               label="Email"
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your email!",
-                },
-              ]}
+              help={errors.email ? errors.email.message : ""}
+              validateStatus={errors.email ? "error" : "success"}
             >
-              <Input placeholder="Email" />
+              <Controller
+                name="email"
+                render={({ field }) => <Input {...field} placeholder="Email" type="email" />}
+                control={control}
+              />
             </Form.Item>
 
             <Form.Item
-              className="username"
+              className="password"
               label="Password"
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your password!",
-                },
-              ]}
+              help={errors.password ? errors.password.message : ""}
+              validateStatus={errors.password ? "error" : "success"}
             >
-              <Input placeholder="Password" />
+              <Controller
+                name="password"
+                render={({ field }) => <Input {...field} placeholder="Password" type="password" />}
+                control={control}
+              />
             </Form.Item>
 
-            <Form.Item name="remember" valuePropName="checked">
-              <Checkbox>
-                I agree the{" "}
-                <a href="#" className="font-bold text-dark">
-                  Terms and Conditions
-                </a>
-              </Checkbox>
+            <Form.Item
+              className="password_confirmation"
+              label="Confirm Password"
+              help={errors.password_confirmation ? errors.password_confirmation.message : ""}
+              validateStatus={errors.password_confirmation ? "error" : "success"}
+            >
+              <Controller
+                name="password_confirmation"
+                render={({ field }) => <Input {...field} placeholder="Confirm Password" type="password" />}
+                control={control}
+              />
+            </Form.Item>
+
+            <Form.Item
+              className="terms"
+              valuePropName="checked"
+              help={errors.terms ? errors.terms.message : ""}
+              validateStatus={errors.terms ? "error" : "success"}
+            >
+              <Controller
+                name="terms"
+                render={({ field: { onChange, value } }) => (
+                  <Checkbox checked={value} onChange={onChange}>
+                    I agree the{" "}
+                    <a href="#" className="font-bold text-dark">
+                      Terms and Conditions
+                    </a>
+                  </Checkbox>
+                )}
+                control={control}
+              />
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ width: "100%" }}
+                loading={isSubmitting}
+                disabled={isSubmitting}
+              >
                 SIGN UP
               </Button>
             </Form.Item>
+
             <p className="font-semibold text-muted">
               Already have an account?{" "}
               <Link to="/" className="font-bold text-dark">

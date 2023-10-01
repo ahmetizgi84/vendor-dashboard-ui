@@ -3,3 +3,11 @@ export type TLoginPayloadDTO = {
   password: string;
   //   remember: boolean;
 };
+
+export type TRegisterPayloadDTO = {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+};
