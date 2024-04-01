@@ -25,10 +25,28 @@ export const apiLoginAsync = async (values: TLoginPayloadDTO) => {
       password: values.password,
     };
 
-    const response = await httpLogin(request);
-    const data = response.data;
-    setLoginData(data.data);
-    cacheSet("AUTH_STATE", data.data);
+    // const response = await httpLogin(request);
+    // const data = response.data;
+    // setLoginData(data.data);
+    // cacheSet("AUTH_STATE", data.data);
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        const loginData = {
+          token: "abc",
+          user: {
+            id: 1,
+            name: "John",
+            surname: "Doe",
+            email: "john@example.com",
+            email_verified_at: null,
+          },
+        };
+        setLoginData(loginData);
+        cacheSet("AUTH_STATE", loginData);
+        resolve(true);
+      }, 3000);
+    });
   } catch (error) {
     console.error("apiLoginAsync error: ", error);
     return {

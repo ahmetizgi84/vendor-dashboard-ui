@@ -71,7 +71,7 @@ const Header = () => {
   return (
     <AntHeader>
       <div className="header-col header-brand">
-        <h5>Goz Vendor Dashboard</h5>
+        <h5>AI Dashboard</h5>
       </div>
 
       {/* <div className="header-col header-nav">
@@ -103,7 +103,9 @@ const Header = () => {
         </Menu>
       </div> */}
 
-      <div className="header-col header-btn">{/* <Button type="primary">FREE DOWNLOAD</Button> */}</div>
+      <div className="header-col header-btn">
+        {/* <Button type="primary">FREE DOWNLOAD</Button> */}
+      </div>
     </AntHeader>
   );
 };

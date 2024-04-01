@@ -35,7 +35,7 @@ const Footer = () => {
         </Menu.Item>
       </Menu> */}
       <p className="copyright">
-        Copyright © {new Date().getFullYear()} by<a href="#">Gozfood Team</a>
+        Copyright © {new Date().getFullYear()} by<a href="#">AI</a>
       </p>
     </AntFooter>
   );

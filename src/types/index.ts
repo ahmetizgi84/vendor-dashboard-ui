@@ -11,14 +11,11 @@ export type TLoginData = {
 
 export type TLoginUser = {
   id: number;
-  created_at: string;
-  updated_at: string;
-  deleted_at: null;
   name: string;
   surname: string;
   email: string;
   email_verified_at: null;
-  info: TLoginInfo;
+  // info: TLoginInfo;
 };
 
 export type TLoginInfo = {

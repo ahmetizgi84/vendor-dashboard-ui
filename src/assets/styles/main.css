@@ -1962,6 +1962,7 @@ body {
 }
 .layout-signin {
   background: #fff;
+  min-height: 100vh;
 }
 .layout-signin footer.ant-layout-footer svg {
   width: 18px;

@@ -8,7 +8,13 @@ function SideNav({ color }: { color: string }) {
 
   function Dashboard() {
     return (
-      <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" key={0}>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        key={0}
+      >
         <path
           d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4V6C17 6.55228 16.5523 7 16 7H4C3.44772 7 3 6.55228 3 6V4Z"
           fill={color}
@@ -26,7 +32,13 @@ function SideNav({ color }: { color: string }) {
   }
 
   const dashboard = [
-    <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" key={0}>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      key={0}
+    >
       <path
         d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4V6C17 6.55228 16.5523 7 16 7H4C3.44772 7 3 6.55228 3 6V4Z"
         fill={color}
@@ -43,7 +55,14 @@ function SideNav({ color }: { color: string }) {
   ];
 
   const tables = [
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" key={0}>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      key={0}
+    >
       <path
         d="M9 2C8.44772 2 8 2.44772 8 3C8 3.55228 8.44772 4 9 4H11C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2H9Z"
         fill={color}
@@ -58,8 +77,18 @@ function SideNav({ color }: { color: string }) {
   ];
 
   const billing = [
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" key={0}>
-      <path d="M4 4C2.89543 4 2 4.89543 2 6V7H18V6C18 4.89543 17.1046 4 16 4H4Z" fill={color}></path>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      key={0}
+    >
+      <path
+        d="M4 4C2.89543 4 2 4.89543 2 6V7H18V6C18 4.89543 17.1046 4 16 4H4Z"
+        fill={color}
+      ></path>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -81,7 +110,14 @@ function SideNav({ color }: { color: string }) {
   // ];
 
   const profile = [
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" key={0}>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      key={0}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -131,13 +167,15 @@ function SideNav({ color }: { color: string }) {
     } as MenuItem;
   }
 
-  const items: MenuProps["items"] = [getItem("Dashboard", "menuItem1", <Dashboard />)];
+  const items: MenuProps["items"] = [
+    getItem("Dashboard", "menuItem1", <Dashboard />),
+  ];
 
   return (
     <>
       <div className="brand">
         <img src={"/images/logo.png"} alt="" />
-        <span>GozFood Dashboard</span>
+        <span>AI Dashboard</span>
       </div>
       <hr />
       <Menu theme="light" mode="inline">

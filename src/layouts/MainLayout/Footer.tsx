@@ -12,7 +12,7 @@ function Footer() {
             © 2023, made with
             {<HeartFilled />} by
             <a href="#" className="font-weight-bold" target="_blank">
-              GozFood Team
+              AI
             </a>
           </div>
         </Col>
@@ -21,7 +21,7 @@ function Footer() {
             <ul>
               <li className="nav-item">
                 <a href="#" className="nav-link text-muted" target="_blank">
-                  GozFood Team
+                  AI
                 </a>
               </li>
               <li className="nav-item">
